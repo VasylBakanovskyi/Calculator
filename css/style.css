@@ -1,0 +1,50 @@
+.calculator {
+           width: 300px;
+           height: 450px;
+           border: 1px solid #ccc;
+           border-radius: 10px;
+           display: flex;
+           flex-wrap: wrap;
+           padding: 20px;
+           background-color: rgb(161, 159, 159);
+           position: relative;
+           margin: 50px auto;
+       }
+       .btn {
+           width: 40px;
+           height: 40px;
+           border: 1px solid #ccc;
+           border-radius: 10px;
+           padding: 5px;
+           margin: 10px;
+           font-size: 30px;
+           text-align: center;
+           background-color: rgb(63, 61, 61);
+           color: #fff;
+           cursor: pointer;
+       }
+       .btn-output {
+           width: 100%;
+           overflow: hidden;
+           padding: 10px;
+           margin: 10px;
+           padding-top: 15px;
+       }
+       .calc-area {
+            width: 101px;
+            height: 20px;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #ffffff;
+            overflow: hidden;
+            font-size: 18px;
+       }
+       .clicked {
+           background-color: rgb(240, 109, 49);
+           color: #000;
+       }
+       
+       .btn-square sup {
+           font-size: 18px;
+       }
