@@ -152,7 +152,8 @@ document.addEventListener('keypress', function(e) {
         case el === 13: equal();
         break;
     }
-    const data = document.querySelector('.btn[data="' + el + '"]');
+    const data = document.querySelector(`.btn[data="${el}"]`);
+    console.log(data)
     data.classList.add('clicked');
     setTimeout(function() {
         data.classList.remove('clicked')
