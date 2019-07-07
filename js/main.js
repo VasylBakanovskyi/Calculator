@@ -1,5 +1,5 @@
-var output = document.querySelector('.btn-output');
-var calcArea = document.querySelector('.calc-area');
+const output = document.querySelector('.btn-output');
+const calcArea = document.querySelector('.calc-area');
 
 function mathOperation() {
     calcArea.textContent = output.textContent;
@@ -31,7 +31,7 @@ function getSqrt() {
     calcArea.classList.add('calc-area', 'getSqrt');
 };
 function point() {
-    var str = output.textContent.split('');
+    let str = output.textContent.split('');
     str = str.some(function(point) {
         return point === '.'
     })
@@ -63,11 +63,12 @@ function equal() {
 }
 
 document.querySelector('.calculator')
-    .addEventListener('click', function(e) {
-        if (e.target.classList.contains('btn')) {
-            e.target.classList.add('clicked')
+    .addEventListener('click', e => {
+        const el = e.target;
+        if (el.classList.contains('btn')) {
+            el.classList.add('clicked')
             setTimeout(function() {
-                e.target.classList.remove('clicked')
+                el.classList.remove('clicked')
             }, 300)
         }
     });
@@ -75,14 +76,11 @@ document.querySelector('.calculator')
 document.querySelectorAll('.btn-number')
     .forEach(function(num) {
         num.addEventListener('click', function() {
-            if (this.classList.contains('btn-doubleZero') && output.textContent.length === 0) {
-                return;
-            }
-            if (this.classList.contains('btn-zero') && output.textContent.length === 1) {
+            if (this.classList.contains('btn-zero') && output.textContent.length === 0) {
                 return;
             }
             if (output.textContent.length === 1 && output.textContent[0] === '0') {
-                output.textContent = output.textContent.slice(1);
+                output.textContent.slice(1);
             }
             if (output.textContent.length === 13) {
                 return;
@@ -122,41 +120,39 @@ document.querySelector('.btn-equal')
     .addEventListener('click', equal);
     
 document.addEventListener('keypress', function(e) {
-    var arrCharCodeOperation = [47, 42, 45, 43, 13, 46];
-    var arrCharCodeCalculate = [48, 46, 13, 49, 50, 51, 52, 53, 54, 43, 55, 56, 57, 47, 42, 45];
-    
-    function checkOperation(arr) {
+    const arrOperationBtns = [47, 42, 45, 43, 13, 46];
+    const arrCalculatorBtns = [48, 46, 13, 49, 50, 51, 52, 53, 54, 43, 55, 56, 57, 47, 42, 45];
+    const el = e.charCode;
+
+    function checkCharCode(arr) {
         return arr.some(function(item) {
-            return e.charCode === item;
-        })
-    }
-    function checkCharCodeNumbers(arr) {
-        return arr.some(function(item) {
-            return e.charCode === item;
+            return el === item;
         }) 
     }
-    if(!checkCharCodeNumbers(arrCharCodeCalculate)) {
+    if(!checkCharCode(arrCalculatorBtns)) {
         return;
     }
-    if(!checkOperation(arrCharCodeOperation)) {
-        output.textContent += String.fromCharCode(e.charCode);
+    if(!checkCharCode(arrOperationBtns)) {
+        output.textContent += String.fromCharCode(el);
+    }
+    if (el == '48' && output.textContent.length === 1) {
+        output.textContent = output.textContent.slice(1);
     }
     switch(true) {
-        case e.charCode === 43: plus();
+        case el === 43: plus();
         break;
-        case e.charCode === 45: minus();
+        case el === 45: minus();
         break;
-        case e.charCode === 42: multiply();
+        case el === 42: multiply();
         break;
-        case e.charCode === 47: division();
+        case el === 47: division();
         break;
-        case e.charCode === 46: point();
+        case el === 46: point();
         break;
-        case e.charCode === 13: equal();
+        case el === 13: equal();
         break;
     }
-    var data = document.querySelector('.btn[data="' + e.charCode + '"]');
-    
+    const data = document.querySelector('.btn[data="' + el + '"]');
     data.classList.add('clicked');
     setTimeout(function() {
         data.classList.remove('clicked')
