@@ -1,2 +1,2 @@
 # Calculator
-It's a simple calculator, my first test project, built on native JS
+It's a simple calculator, built on native JS. Support calculate from keypad
